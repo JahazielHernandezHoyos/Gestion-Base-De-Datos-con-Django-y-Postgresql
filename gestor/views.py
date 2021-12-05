@@ -69,24 +69,6 @@ def respuesta(request):
     nombre=request.GET["nombre"]
     genero=request.GET["genero"]
     return render(request, 'respu.html', {'nombre':nombre, 'edad':edad, 'genero':genero})
-
-def validacion(request):
-    nombre= request.POST["nombre"]
-    direccion= request.POST["direccion"]
-    telefono= request.POST["telefono"]
-    password= request.POST["password"]
-    passwordRep= request.POST["passwordRep"]
-    email= request.POST["email"]
-    status=verificacion(nombre, direccion, telefono, password, passwordRep, email)
-
-    if len(list(status.keys()))>0:
-        return render(request, 'registro.html', {'status':status})
-    else:
-        cliente.objects.create(nombre=nombre, direccion=direccion, email=email, telefono=telefono, password=password)
-        return render(request, "registroExitoso.html", {'nombre':nombre})
-
-
-
 def verificacion(nombre, direccion, telefono, password, passwordRep,email):
     dicError={}
 
@@ -131,6 +113,22 @@ def verificacion(nombre, direccion, telefono, password, passwordRep,email):
         else:
             dicError.setdefault('errorEmail', "El correo electronico no esta disponible")
     return dicError
+
+def validacion(request):
+    
+    nombre= request.POST["nombre"]
+    direccion= request.POST["direccion"]
+    telefono= request.POST["telefono"]
+    password= request.POST["password"]
+    passwordRep= request.POST["passwordRep"]
+    email= request.POST["email"]
+    status=verificacion(nombre, direccion, telefono, password, passwordRep, email)
+
+    if len(list(status.keys()))>0:
+        return render(request, 'registro.html', {'status':status})
+    else:
+        cliente.objects.create(nombre=nombre, direccion=direccion, email=email, telefono=telefono, password=password)
+        return render(request, "registroExitoso.html", {'direccion':direccion,'email':email,'telefono':telefono,'password':password,'passwordRep':passwordRep})
 
 def register(request):
     if request.method=='POST':
