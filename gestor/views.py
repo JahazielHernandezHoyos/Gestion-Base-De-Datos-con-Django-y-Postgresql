@@ -77,7 +77,7 @@ def validacion(request):
     password= request.POST["password"]
     passwordRep= request.POST["passwordRep"]
     email= request.POST["email"]
-    status=(nombre, direccion, telefono, password, passwordRep, email)
+    status=verificacion(nombre, direccion, telefono, password, passwordRep, email)
 
     if len(list(status.keys()))>0:
         return render(request, 'registro.html', {'status':status})
@@ -87,50 +87,50 @@ def validacion(request):
 
 
 
-# def verificacion(nombre, direccion, telefono, password, passwordRep,email):
-#     dicError={}
+def verificacion(nombre, direccion, telefono, password, passwordRep,email):
+    dicError={}
 
-#     if len(nombre)>=40 or len(nombre) < 3:
-#         dicError.setdefault('errorNombre', 'El nombre debe contener mas de 3 letras y menor o igual a 40 letras')
+    if len(nombre)>=40 or len(nombre) < 3:
+        dicError.setdefault('errorNombre', 'El nombre debe contener mas de 3 letras y menor o igual a 40 letras')
     
-#     if len(direccion)>=40 or len(direccion):
-#         dicError.setdefault('errorDireccion', 'La direccion debe contener mas de 3 letras')
+    if len(direccion)>=40 or len(direccion):
+        dicError.setdefault('errorDireccion', 'La direccion debe contener mas de 3 letras')
 
-#     if not(len(telefono)==10):
-#         dicError.setdefault('errorTelefono', 'El numero telefonico dede tener 10 digitos')
+    if not(len(telefono)==10):
+        dicError.setdefault('errorTelefono', 'El numero telefonico dede tener 10 digitos')
 
-#     for i in telefono:
-#         if ord(i) < 48 or ord(i) > 58:
-#             if 'errorTelefono' in dicError:
-#                 dicError['errorTelefono']="El telefono solo puede contener numeros"
-#                 break
-#             else:
-#                 dicError.setdefault("errorTelefono", "El numero telefonico no puede contener letras")
-#                 break
-#     if len(password)==0:
-#         dicError.setdefault('errorDireccion', "Debe ingresar una direccion")
+    for i in telefono:
+        if ord(i) < 48 or ord(i) > 58:
+            if 'errorTelefono' in dicError:
+                dicError['errorTelefono']="El telefono solo puede contener numeros"
+                break
+            else:
+                dicError.setdefault("errorTelefono", "El numero telefonico no puede contener letras")
+                break
+    if len(password)==0:
+        dicError.setdefault('errorDireccion', "Debe ingresar una direccion")
     
-#     if len(password)>= 21 or len(password)<=7:
-#         if 'errorPassword' in dicError:
-#             dicError['errorpassword']="La contraseña debe tener al menos 8 caracteres y no ser mayor a 20 caracteres"
-#         else:
-#             dicError.setdefault('errorPassword', "La contraseña debe tener al menos 8 caracteres y no ser mayor a 20 caracteres")
+    if len(password)>= 21 or len(password)<=7:
+        if 'errorPassword' in dicError:
+            dicError['errorpassword']="La contraseña debe tener al menos 8 caracteres y no ser mayor a 20 caracteres"
+        else:
+            dicError.setdefault('errorPassword', "La contraseña debe tener al menos 8 caracteres y no ser mayor a 20 caracteres")
     
-#     if not(password==passwordRep):
-#         if 'errorPasword' in dicError:
-#             dicError['errorPassword']= "La contraseña y la repeticion de la contraseña no coinciden"
-#         else:
-#             dicError.setdefault('errorPassword', "La contraseña y la repeticion de la contraseña no coinciden")
+    if not(password==passwordRep):
+        if 'errorPasword' in dicError:
+            dicError['errorPassword']= "La contraseña y la repeticion de la contraseña no coinciden"
+        else:
+            dicError.setdefault('errorPassword', "La contraseña y la repeticion de la contraseña no coinciden")
     
-#     if len(email)==0:
-#         dicError.setdefault('errorEmail', "Debe ingresar un correo")
-#         emailEnBase = cliente.objects.filter(email=email)
-#     if not len(emailEnBase)==0:
-#         if "errorEmail" in  dicError:
-#             dicError['erorEmail']="El correo electronico no esta disponible"
-#         else:
-#             dicError.setdefault('errorEmail', "El correo electronico no esta disponible")
-#     return dicError
+    if len(email)==0:
+        dicError.setdefault('errorEmail', "Debe ingresar un correo")
+        emailEnBase = cliente.objects.filter(email=email)
+    if not len(emailEnBase)==0:
+        if "errorEmail" in  dicError:
+            dicError['erorEmail']="El correo electronico no esta disponible"
+        else:
+            dicError.setdefault('errorEmail', "El correo electronico no esta disponible")
+    return dicError
 
 def register(request):
     if request.method=='POST':
