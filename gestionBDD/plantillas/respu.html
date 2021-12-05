@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Respuesta</title>
+</head>
+<body>
+    {% if genero == 'M' %}
+            <style>
+                span{
+                    color: royalblue;
+                }
+            </style>
+            <h1>Bienvenido <span>{{nombre}}</span></h1>
+        {%else %}
+            <style>
+                span{
+                    color: salmon;
+                }
+            </style>
+            <h1>Bienvenida <span>{{nombre}}</span></h1>
+        {% endif %}
+        <p>Usted tiene {{edad}} años de edad le recomendamos el siguiente video</p>
+        {% if edad <= 8 %}
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/teKw4lb4rEs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        {% endif %}
+
+        {% if edad > 8 and edad <= 20 %}
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/7WwNsbid_OQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        {% endif %}
+
+        {% if edad > 20 %}
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/lOVqbd8IE-w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        {% endif %}
+</body>
+</html>

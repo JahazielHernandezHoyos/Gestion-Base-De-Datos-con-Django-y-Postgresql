@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+</head>
+<body>
+    <style>
+        form{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        form *{
+
+            max-width: 20%;
+            margin: 5px;
+        }
+    </style>
+<form action="/respuesta/" method="get">
+
+    <label for="nombre">Nombre:</label>
+    <input type="text" name="nombre" size="40">
+
+    <label for="nacimiento">Fecha de Nacimiento:</label>
+    <input type="date" name="nacimiento">
+
+    <label for="genero">Masculino</label>
+    <input type="radio" name="genero" value="M">
+    <label for="genero">Femenino</label>
+    <input type="radio" name="genero" value="F">
+
+    <input type="submit" value="Enviar">
+    <input type="reset" value="Borrar">
+
+</form>
+</body>
+</html>
