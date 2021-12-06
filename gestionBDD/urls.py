@@ -22,7 +22,7 @@ urlpatterns = [
     path('respuesta/', respuesta),
     path('buscar/', formularioBusqueda),
     path('resultado/', resultado),
-    path('validacion/', verificacion),
+    path('validacion/', validacion),
     path('register/', register, name='Registrar'),
     path('login/', ingresar, name='Ingresar'),
     path('salir/', salir, name='Salir'),

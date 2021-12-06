@@ -106,22 +106,22 @@ def verificacion(nombre, direccion, telefono, password, passwordRep,email):
     
     if len(email)==0:
         dicError.setdefault('errorEmail', "Debe ingresar un correo")
-        emailEnBase = cliente.objects.filter(email=email)
-    if not len(emailEnBase)==0:
-        if "errorEmail" in  dicError:
-            dicError['erorEmail']="El correo electronico no esta disponible"
-        else:
-            dicError.setdefault('errorEmail', "El correo electronico no esta disponible")
+    #     emailEnBase = cliente.objects.filter(email=email)
+    # if not len(emailEnBase)==0:
+    #     if "errorEmail" in  dicError:
+    #         dicError['erorEmail']="El correo electronico no esta disponible"
+    #     else:
+    #         dicError.setdefault('errorEmail', "El correo electronico no esta disponible")
     return dicError
 
 def validacion(request):
-    
-    nombre= request.POST["nombre"]
-    direccion= request.POST["direccion"]
-    telefono= request.POST["telefono"]
-    password= request.POST["password"]
-    passwordRep= request.POST["passwordRep"]
-    email= request.POST["email"]
+
+    nombre= "Jahaziel Hernandez" #request.POST.get('nombre')
+    direccion= "calle blablabla" #request.POST.get("direccion")
+    telefono= "3226099206"#request.POST.get("telefono")
+    password= "1234" #request.POST.get("password")
+    passwordRep= "1234" #request.POST.get("passwordRep")
+    email= "jahazielhernandezhoyoz@gmail.com" #request.POST.get("email")
     status=verificacion(nombre, direccion, telefono, password, passwordRep, email)
 
     if len(list(status.keys()))>0:
